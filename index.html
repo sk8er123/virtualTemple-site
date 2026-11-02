@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; &#39;sha256-3hFPHFUGffYRxtZd8nqk3a6K0NrKJYxoPYXUMUsw+XA=&#39;; style-src &#39;self&#39; &#39;sha256-pdSFGdtMpBKDDQ6z947Nz+AUYp8FgAUFLVKLdHSNdSY=&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; connect-src &#39;self&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>virtualTemple</title>
+    <link rel="icon" href="data:," />
+    <style>@font-face{font-family:GmarketSans;src:url(./assets/GmarketSansMedium-0HF3YoFd.woff2)format("woff2");font-weight:100 500;font-display:swap}@font-face{font-family:GmarketSans;src:url(./assets/GmarketSansBold-CuKonOoB.woff2)format("woff2");font-weight:600 900;font-display:swap}html,body{background:#2b2a27;height:100%;margin:0;overflow:hidden}canvas{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;display:block}[hidden]{display:none!important}#boot,#fatal-error{box-sizing:border-box;padding:max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));color:#efe9dc;text-align:center;word-break:keep-all;background:#2b2a27;flex-direction:column;justify-content:center;align-items:center;gap:12px;font-family:GmarketSans,system-ui,sans-serif;font-size:15px;line-height:1.5;display:flex;position:fixed;inset:0}#boot{z-index:10}#fatal-error{z-index:20}#boot h1,#fatal-error h1{margin:0;font-size:20px;font-weight:600}#boot p,#fatal-error p{margin:0}#boot a{min-height:44px;color:inherit;align-items:center;display:inline-flex}#boot button,#fatal-error button{min-height:44px;color:inherit;font:inherit;cursor:pointer;background:#4a4438;border:1px solid #8a8272;border-radius:8px;padding:0 16px}</style>
+    <script type="module" crossorigin src="./assets/index-CfJZhELm.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-CRzLMJPS.js">
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="boot">
+      <h1>virtualTemple</h1>
+      <noscript><p>이 사이트는 JavaScript가 있어야 들어갈 수 있어요. 브라우저 설정에서 켠 뒤 다시 들어와 주세요.</p></noscript>
+      <p id="boot-loading" hidden>법당 문을 여는 중이에요</p>
+      <div role="status" aria-live="polite">
+        <p id="boot-slow" hidden>법당 준비가 늦어지고 있어요</p>
+        <p id="boot-beads-failed" hidden>염주를 열지 못했어요. 다시 눌러주세요</p>
+      </div>
+      <a id="boot-reenter" href="" hidden>다시 들어가기</a>
+      <button id="boot-beads" type="button" hidden>염주 먼저 굴리기</button>
+    </div>
+    <template id="fatal-template">
+      <div id="fatal-error" role="alert">
+        <h1>법당을 열지 못했어요</h1>
+        <p>화면을 준비하지 못했어요. 다시 시도해도 안 되면 다른 브라우저로 다시 들어와 주세요.</p>
+        <button type="button">다시 시도</button>
+      </div>
+    </template>
+    <!--
+      진입 청크나 그 공용 청크를 받지 못하면 번들 코드는 한 줄도 돌지 않습니다. 그래서 타이머와 오류 화면은
+      번들이 아니라 여기에 있습니다 ENT-03 ENT-04 ENT-05. 번들은 `window.vtBoot`만 부릅니다(`app/bootScreen.ts`).
+      이 스크립트를 고치면 11.8의 CSP 해시도 달라집니다.
+    -->
+    <script>
+      (function () {
+        var SLOW_MS = 2000;
+        var REENTER_MS = 15000;
+        var FAIL_MS = 45000;
+        var byId = document.getElementById.bind(document);
+        var held = false;
+        var failPending = false;
+        var timers = [
+          setTimeout(function () {
+            byId('boot-slow').hidden = false;
+          }, SLOW_MS),
+          setTimeout(function () {
+            byId('boot-reenter').hidden = false;
+          }, REENTER_MS),
+          setTimeout(fail, FAIL_MS),
+        ];
+
+        byId('boot-loading').hidden = false;
+
+        function fail() {
+          // 염주를 굴리는 동안에는 끊지 않고, 닫을 때 보여 줍니다.
+          if (held) {
+            failPending = true;
+            return;
+          }
+          if (byId('fatal-error')) return;
+          timers.forEach(clearTimeout);
+          var boot = byId('boot');
+          if (boot) boot.hidden = true;
+          var screen = byId('fatal-template').content.firstElementChild.cloneNode(true);
+          var retry = screen.querySelector('button');
+          // 실패한 동적 import를 브라우저가 기억할 수 있어, 재시도는 새로고침입니다.
+          retry.addEventListener('click', function () {
+            location.reload();
+          });
+          document.body.append(screen);
+          retry.focus();
+        }
+
+        // 스크립트의 불러오기 실패는 버블링되지 않아 캡처 단계에서 받습니다.
+        window.addEventListener(
+          'error',
+          function (event) {
+            if (event.target && event.target.tagName === 'SCRIPT') fail();
+          },
+          true,
+        );
+
+        window.vtBoot = {
+          fail: fail,
+          /** 입장했습니다. 늦게라도 들어왔으면 오류 화면을 걷습니다. */
+          finish: function () {
+            timers.forEach(clearTimeout);
+            held = false;
+            failPending = false;
+            [byId('boot'), byId('fatal-error')].forEach(function (node) {
+              if (node) node.remove();
+            });
+          },
+          /** 염주가 열려 있는 동안 숨깁니다. 염주 화면은 투명해서 부트 화면이 비칩니다. */
+          hold: function (next) {
+            held = next;
+            var boot = byId('boot');
+            if (boot) boot.hidden = next;
+            if (!next && failPending) {
+              failPending = false;
+              fail();
+            }
+          },
+        };
+      })();
+    </script>
+  </body>
+</html>
