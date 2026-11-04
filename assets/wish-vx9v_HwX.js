@@ -1,0 +1,1 @@
+function e(e){return e.normalize(`NFC`).replace(/\p{Cf}/gu,``).replace(/[\s\p{Cc}]+/gu,` `).trim()}function t(e){return e===``?`empty`:e.length>80?`too-long`:null}export{t as n,e as t};
