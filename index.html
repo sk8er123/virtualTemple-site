@@ -1,113 +1,82 @@
 <!doctype html>
 <html lang="ko">
   <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; &#39;sha256-3hFPHFUGffYRxtZd8nqk3a6K0NrKJYxoPYXUMUsw+XA=&#39;; style-src &#39;self&#39; &#39;sha256-pdSFGdtMpBKDDQ6z947Nz+AUYp8FgAUFLVKLdHSNdSY=&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; media-src &#39;self&#39;; connect-src &#39;self&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">
+    <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; ; style-src &#39;self&#39; &#39;sha256-fHFejBwrLdo7uMPs2Z+yKxgiEYqveFKx8Se+dKNxgys=&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; media-src &#39;self&#39;; connect-src &#39;self&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>virtualTemple</title>
-    <link rel="icon" href="data:," />
-    <style>@font-face{font-family:GmarketSans;src:url(./assets/GmarketSansMedium-0HF3YoFd.woff2)format("woff2");font-weight:100 500;font-display:swap}@font-face{font-family:GmarketSans;src:url(./assets/GmarketSansBold-CuKonOoB.woff2)format("woff2");font-weight:600 900;font-display:swap}html,body{background:#2b2a27;height:100%;margin:0;overflow:hidden}canvas{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;display:block}[hidden]{display:none!important}#boot,#fatal-error{box-sizing:border-box;padding:max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));color:#efe9dc;text-align:center;word-break:keep-all;background:#2b2a27;flex-direction:column;justify-content:center;align-items:center;gap:12px;font-family:GmarketSans,system-ui,sans-serif;font-size:15px;line-height:1.5;display:flex;position:fixed;inset:0}#boot{z-index:10}#fatal-error{z-index:20}#boot h1,#fatal-error h1{margin:0;font-size:20px;font-weight:600}#boot p,#fatal-error p{margin:0}#boot a{min-height:44px;color:inherit;align-items:center;display:inline-flex}#boot button,#fatal-error button{min-height:44px;color:inherit;font:inherit;cursor:pointer;background:#4a4438;border:1px solid #8a8272;border-radius:8px;padding:0 16px}</style>
-    <script type="module" crossorigin src="./assets/index-BQZQ6vXv.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/preload-helper-CRzLMJPS.js">
+    <title>템플라이프 · 내 손안의 작은 사찰</title>
+    <meta name="description" content="언제 어디서나 접속해 마음의 평화를 찾고, 소중한 이들과 기도를 나누세요." />
+    <meta name="theme-color" content="#141b31" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="템플라이프 · 내 손안의 작은 사찰" />
+    <meta property="og:description" content="함께 기도하는 고요한 디지털 성지. 언제 어디서나 접속해 마음의 평화를 찾으세요." />
+    <link rel="icon" href="./assets/app-icon-B0NhdCuH.webp" />
+    <!--
+      앱 소개(히어로) 페이지입니다. 모바일 세로 화면을 기준으로 만들었고, 넓은 화면에서는 가운데 한 줄로 보입니다.
+      법당(게임)은 `start.html`입니다. 스크립트가 없어 CSP에는 인라인 스타일 해시만 들어갑니다.
+      주석 안에 style, script 태그 이름을 꺾쇠와 함께 쓰지 않습니다. CSP 플러그인이 그것을 태그로 읽어 해시가 틀어집니다.
+    -->
+    <style>@font-face{font-family:GmarketSans;src:url(./assets/GmarketSansMedium-0HF3YoFd.woff2)format("woff2");font-weight:100 500;font-display:swap}@font-face{font-family:GmarketSans;src:url(./assets/GmarketSansBold-CuKonOoB.woff2)format("woff2");font-weight:600 900;font-display:swap}:root{--night:#141b31;--night-deep:#0d1222;--gold:#f0cf7e;--gold-deep:#c9973f;--paper:#f6efdf;--muted:#b8b2a3;--lightningcss-light: ;--lightningcss-dark:initial;color-scheme:dark}*,:before,:after{box-sizing:border-box}html{background:var(--night-deep);-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%}body{min-height:100svh;color:var(--paper);background:radial-gradient(120% 60% at 50% 0%, #22305a 0%, transparent 70%), linear-gradient(180deg, var(--night) 0%, var(--night-deep) 100%);word-break:keep-all;overflow-wrap:break-word;-webkit-tap-highlight-color:transparent;margin:0;font-family:GmarketSans,system-ui,-apple-system,Apple SD Gothic Neo,Noto Sans KR,sans-serif;line-height:1.5}body:before,body:after{content:"";z-index:0;pointer-events:none;background-repeat:repeat;background-size:220px 260px;position:fixed;inset:0}body:before{background-image:radial-gradient(1.4px 1.4px at 24px 40px,#fff8e1 50%,#0000 51%),radial-gradient(1px 1px at 150px 92px,#fff 50%,#0000 51%),radial-gradient(1.6px 1.6px at 92px 180px,#ffe7a8 50%,#0000 51%),radial-gradient(1px 1px at 198px 230px,#fff 50%,#0000 51%);animation:5s ease-in-out infinite twinkle}body:after{background-image:radial-gradient(1px 1px at 60px 120px,#fff 50%,#0000 51%),radial-gradient(1.4px 1.4px at 180px 24px,#ffe7a8 50%,#0000 51%),radial-gradient(1px 1px at 130px 210px,#fff8e1 50%,#0000 51%);background-position:70px 40px;animation:7s ease-in-out -3s infinite twinkle}@keyframes twinkle{0%,to{opacity:.35}50%{opacity:.9}}.page{z-index:1;max-width:460px;min-height:100svh;padding:max(20px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));flex-direction:column;margin:0 auto;display:flex;position:relative}.brand{align-items:center;gap:10px;margin:0;display:flex}.brand img{border-radius:10px;width:36px;height:36px;box-shadow:0 0 0 1px #f0cf7e59}.brand-name{letter-spacing:-.01em;flex-direction:column;font-size:17px;font-weight:700;line-height:1.15;display:flex}.brand-name small{color:var(--gold);letter-spacing:.08em;font-size:11px;font-weight:500}.hero{text-align:center;flex-direction:column;flex:1;align-items:center;display:flex}.art{width:min(84vw,360px);margin:18px 0 6px;position:relative}.art:before{content:"";filter:blur(18px);background:radial-gradient(circle,#ffd6786b 0%,#ffd67800 70%);border-radius:50%;animation:6s ease-in-out infinite breathe;position:absolute;inset:6% 10% 22%}.art img{aspect-ratio:1;border-radius:50%;width:100%;height:auto;display:block;position:relative;-webkit-mask-image:radial-gradient(circle at 50% 46%,#000 54%,#0000 71%);mask-image:radial-gradient(circle at 50% 46%,#000 54%,#0000 71%)}@keyframes breathe{0%,to{opacity:.7;transform:scale(.97)}50%{opacity:1;transform:scale(1.04)}}h1{letter-spacing:-.02em;text-wrap:balance;margin:0;font-size:clamp(25px,7.4vw,32px);font-weight:700;line-height:1.36}h1 .lead{color:var(--gold);text-shadow:0 0 24px #f0cf7e59;display:block}h1 .rest{display:block}.sub{max-width:30em;color:var(--muted);text-wrap:pretty;margin:14px 0 0;font-size:15px;line-height:1.7}.stores{gap:12px;width:100%;margin:28px 0 0;padding:0;list-style:none;display:grid}.store{min-height:60px;color:var(--paper);background:#ffffff0f;border:1px solid #f0cf7e61;border-radius:16px;justify-content:center;align-items:center;gap:12px;padding:10px 20px;text-decoration:none;transition:transform .15s,background-color .15s;display:flex}.store:active{transform:scale(.98)}.store.primary{color:#2a1d08;background:linear-gradient(#f6dc95 0%,#e2b75c 100%);border-color:#0000;box-shadow:0 10px 28px -10px #f0be5aa6,inset 0 1px #ffffff8c}.store svg{flex:none;width:26px;height:26px}.store-label{text-align:left;flex-direction:column;align-items:flex-start;line-height:1.2;display:flex}.store-label small{opacity:.8;font-size:12px;font-weight:500}.store-label strong{letter-spacing:-.01em;font-size:19px;font-weight:700}.store:focus-visible,.web:focus-visible{outline:2px solid var(--gold);outline-offset:3px}.web{min-height:44px;color:var(--muted);text-underline-offset:4px;align-items:center;gap:6px;margin-top:10px;padding:0 8px;font-size:14px;-webkit-text-decoration:underline #b8b2a373;text-decoration:underline #b8b2a373;display:inline-flex}footer{color:#b8b2a399;text-align:center;margin-top:24px;font-size:12px}.rise{animation:.8s cubic-bezier(.2,.7,.2,1) both rise}.rise:nth-child(2){animation-delay:.12s}.rise:nth-child(3){animation-delay:.24s}.rise:nth-child(4){animation-delay:.36s}.rise:nth-child(5){animation-delay:.48s}@keyframes rise{0%{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion:reduce){body:before,body:after,.art:before,.rise{animation:none}}</style>
   </head>
   <body>
-    <div id="app"></div>
-    <div id="boot">
-      <h1>virtualTemple</h1>
-      <noscript><p>이 사이트는 JavaScript가 있어야 들어갈 수 있어요. 브라우저 설정에서 켠 뒤 다시 들어와 주세요.</p></noscript>
-      <p id="boot-loading" hidden>법당 문을 여는 중이에요</p>
-      <div role="status" aria-live="polite">
-        <p id="boot-slow" hidden>법당 준비가 늦어지고 있어요</p>
-        <p id="boot-beads-failed" hidden>염주를 열지 못했어요. 다시 눌러주세요</p>
-      </div>
-      <a id="boot-reenter" href="" hidden>다시 들어가기</a>
-      <button id="boot-beads" type="button" hidden>염주 먼저 굴리기</button>
+    <div class="page">
+      <header>
+        <p class="brand">
+          <img src="data:image/webp;base64,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" width="36" height="36" alt="" />
+          <span class="brand-name">템플라이프<small>TEMPLE LIFE</small></span>
+        </p>
+      </header>
+
+      <main class="hero">
+        <figure class="art rise">
+          <img
+            src="./assets/hero-CpSQ2Wgz.webp"
+            width="880"
+            height="880"
+            alt="연꽃 좌대 위에서 두광을 두르고 명상하는 작은 스님"
+            fetchpriority="high"
+          />
+        </figure>
+
+        <h1 class="rise">
+          <span class="lead">내 손안의 작은 사찰,</span>
+          <span class="rest">함께 기도하는 고요한 디지털 성지</span>
+        </h1>
+
+        <p class="sub rise">언제 어디서나 접속해 마음의 평화를 찾고, 소중한 이들과 기도를 나누세요.</p>
+
+        <!--
+          스토어 주소. App Store 주소의 `id0000000000`은 앱 심사를 통과해 앱 ID가 나오면 실제 값으로 바꿉니다.
+          Android 주소는 패키지 이름(`com.templelife.app`)으로 정해집니다.
+        -->
+        <ul class="stores rise" aria-label="앱 내려받기">
+          <li>
+            <a class="store primary" href="https://play.google.com/store/apps/details?id=com.templelife.app" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                <path
+                  d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"
+                />
+              </svg>
+              <span class="store-label"><small>Android 다운로드</small><strong>Google Play</strong></span>
+            </a>
+          </li>
+          <li>
+            <a class="store" href="https://apps.apple.com/kr/app/id0000000000" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                <path
+                  d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"
+                />
+              </svg>
+              <span class="store-label"><small>iPhone 다운로드</small><strong>App Store</strong></span>
+            </a>
+          </li>
+        </ul>
+
+        <a class="web rise" href="./start.html">설치 없이 웹에서 먼저 둘러보기 →</a>
+      </main>
+
+      <footer>© 2026 템플라이프</footer>
     </div>
-    <template id="fatal-template">
-      <div id="fatal-error" role="alert">
-        <h1>법당을 열지 못했어요</h1>
-        <p>화면을 준비하지 못했어요. 다시 시도해도 안 되면 다른 브라우저로 다시 들어와 주세요.</p>
-        <button type="button">다시 시도</button>
-      </div>
-    </template>
-    <!--
-      진입 청크나 그 공용 청크를 받지 못하면 번들 코드는 한 줄도 돌지 않습니다. 그래서 타이머와 오류 화면은
-      번들이 아니라 여기에 있습니다 ENT-03 ENT-04 ENT-05. 번들은 `window.vtBoot`만 부릅니다(`app/bootScreen.ts`).
-      이 스크립트를 고치면 11.8의 CSP 해시도 달라집니다.
-    -->
-    <script>
-      (function () {
-        var SLOW_MS = 2000;
-        var REENTER_MS = 15000;
-        var FAIL_MS = 45000;
-        var byId = document.getElementById.bind(document);
-        var held = false;
-        var failPending = false;
-        var timers = [
-          setTimeout(function () {
-            byId('boot-slow').hidden = false;
-          }, SLOW_MS),
-          setTimeout(function () {
-            byId('boot-reenter').hidden = false;
-          }, REENTER_MS),
-          setTimeout(fail, FAIL_MS),
-        ];
-
-        byId('boot-loading').hidden = false;
-
-        function fail() {
-          // 염주를 굴리는 동안에는 끊지 않고, 닫을 때 보여 줍니다.
-          if (held) {
-            failPending = true;
-            return;
-          }
-          if (byId('fatal-error')) return;
-          timers.forEach(clearTimeout);
-          var boot = byId('boot');
-          if (boot) boot.hidden = true;
-          var screen = byId('fatal-template').content.firstElementChild.cloneNode(true);
-          var retry = screen.querySelector('button');
-          // 실패한 동적 import를 브라우저가 기억할 수 있어, 재시도는 새로고침입니다.
-          retry.addEventListener('click', function () {
-            location.reload();
-          });
-          document.body.append(screen);
-          retry.focus();
-        }
-
-        // 스크립트의 불러오기 실패는 버블링되지 않아 캡처 단계에서 받습니다.
-        window.addEventListener(
-          'error',
-          function (event) {
-            if (event.target && event.target.tagName === 'SCRIPT') fail();
-          },
-          true,
-        );
-
-        window.vtBoot = {
-          fail: fail,
-          /** 입장했습니다. 늦게라도 들어왔으면 오류 화면을 걷습니다. */
-          finish: function () {
-            timers.forEach(clearTimeout);
-            held = false;
-            failPending = false;
-            [byId('boot'), byId('fatal-error')].forEach(function (node) {
-              if (node) node.remove();
-            });
-          },
-          /** 염주가 열려 있는 동안 숨깁니다. 염주 화면은 투명해서 부트 화면이 비칩니다. */
-          hold: function (next) {
-            held = next;
-            var boot = byId('boot');
-            if (boot) boot.hidden = next;
-            if (!next && failPending) {
-              failPending = false;
-              fail();
-            }
-          },
-        };
-      })();
-    </script>
   </body>
 </html>
